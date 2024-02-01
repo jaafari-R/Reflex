@@ -1,0 +1,7 @@
+.rentIcon {
+    display: fixed;
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+    color: white;
+}

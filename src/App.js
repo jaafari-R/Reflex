@@ -12,21 +12,25 @@ const USERS = [
     {
         name: "Ramadan Jaafari",
         budget: 12,
+        bgColor: "red",
         id: 1
     },
     {
         name: "Ayman Abadlrhman",
         budget: 10,
+        bgColor: "blue",
         id: 2
     },
     {
         name: "Ameer Jamal",
         budget: 13,
+        bgColor: "green",
         id: 3
     },
     {
         name: "Muhammad Naarani",
         budget: 7,
+        bgColor: "gold",
         id: 4
     }
 ]
@@ -40,19 +44,25 @@ const CATALOG = [
 ]
 
 function App() {
+    const [currentUser, setCurrentUser] = useState(null)
     const [users, setUsers] = useState(USERS);
     const [catalog, setCatalog] = useState(CATALOG);
 
+    const selectUser = (userId) => {
+        setCurrentUser(users.find(user => user.id === userId));
+    }
+
     return (
         <BrowserRouter>
-            <div className="App">
-                <Navbar />
+            <div className="app">
+                <Navbar user={currentUser}/>
+
+                <Routes>
+                    <Route path="/" element={<Home users={users} selectUser={selectUser} />}/>
+                    <Route path="/catalog" element={<Catalog user={currentUser} catalog={catalog} />}/>
+                    <Route path="/movies/:movieId" element={<Movie catalog={catalog} />}/>
+                </Routes>
             </div>
-            <Routes>
-                <Route path="/" element={<Home users={users} />}/>
-                <Route path="/catalog" element={<Catalog catalog={catalog} />}/>
-                <Route path="/movies/:userId" element={<Movie catalog={catalog} />}/>
-            </Routes>
         </BrowserRouter>
     );
 }

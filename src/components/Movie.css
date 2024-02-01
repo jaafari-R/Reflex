@@ -1,0 +1,22 @@
+.movie {
+    display: grid;
+    margin-top: 10px;
+    text-align: center;
+    color: #eee;
+}
+
+.image {
+    justify-self: center;
+    width: fit-content;
+    position: relative;
+}
+
+.image > img {
+    width: 35vw;
+    height: 60vh;
+    margin-block: 10px;
+}
+
+.movie > p {
+
+}

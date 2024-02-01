@@ -1,0 +1,12 @@
+:root {
+    --users-gaps: 5%;
+}
+
+.users {
+    margin-top: 5vh;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* justify-content: space-around; */
+    grid-gap: var(--users-gaps);
+    margin-inline: var(--users-gaps);
+}

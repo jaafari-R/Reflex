@@ -1,7 +1,12 @@
-import React from 'react'
+import "./Home.css";
 
-export default function Home() {
+import React from 'react'
+import Users from "./Users";
+
+export default function Home({users, selectUser}) {
   return (
-    <div>Home</div>
+    <div className='home'>
+        <Users users={users} selectUser={selectUser}/>
+    </div>
   )
 }

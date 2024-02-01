@@ -1,0 +1,43 @@
+.navbar {
+    color: #e8e8e8;
+    display: flex;
+    background-color: #282828;
+    display: flex;
+    padding-block: 5px;
+    box-shadow: 1px 1px #555;
+    padding-inline: 10px;
+}
+
+.links {
+    display: flex;
+    flex: 0.55;
+    gap: 30px;
+}
+
+.links > a {
+    color: #e8e8e8;
+}
+
+.links a:hover {
+    color: red;
+}
+
+.logo {
+    justify-self: end;
+    flex: 0.05;
+    margin-right: 5px;
+    color: red;
+    font-weight: bold;
+}
+
+.userName {
+    flex: 0.2;
+}
+
+.budget {
+    color: rgb(26, 196, 26);
+}
+
+.userBudget {
+    flex: 0.2;
+}

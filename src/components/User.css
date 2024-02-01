@@ -1,0 +1,10 @@
+:root {
+    --user-padding-block: 10vh;
+}
+
+.user {
+    color: #fce8e8;
+    border-radius: 5px;
+    text-align: center;
+    padding-block: var(--user-padding-block);
+}
