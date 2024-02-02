@@ -1,17 +1,15 @@
 import "./Catalog.css";
 
-import React, { useEffect } from 'react'
-import { Link, Navigate } from 'react-router-dom'
+import React from 'react'
+import { Navigate } from 'react-router-dom'
 import MovieCard from './MovieCard'
 
-export default function Catalog({ user, catalog }) {
+export default function Catalog({ user, catalog, toggleRentMovie }) {
     return (
-            user ? 
+        user !== null ? 
             <div className="catalog">
                 {catalog.map(movie => 
-                    <Link to={`/movies/${movie.id}`}>
-                        <MovieCard movie={movie}/>
-                    </Link>
+                    <MovieCard key={movie.id} movie={movie} toggleRentMovie={toggleRentMovie} />
                 )}
             </div>
             :

@@ -1,9 +1,10 @@
 import "./Navbar.css";
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Navbar({ user }) {
+
     return (
         <div className="navbar">
             <div className="userName">

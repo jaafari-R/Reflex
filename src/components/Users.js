@@ -8,7 +8,7 @@ export default function Users({users, selectUser}) {
   return (
     <div className='users'>
         {users.map(user => 
-            <Link to="/catalog">
+            <Link key={user.id} to="/catalog">
                 <User user={user} selectUser={selectUser} />
             </Link>
         )}

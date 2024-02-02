@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from './components/Home';
@@ -13,25 +13,29 @@ const USERS = [
         name: "Ramadan Jaafari",
         budget: 12,
         bgColor: "red",
-        id: 1
+        id: 1,
+        rentedMovies: new Set()
     },
     {
         name: "Ayman Abadlrhman",
         budget: 10,
         bgColor: "blue",
-        id: 2
+        id: 2,
+        rentedMovies: new Set()
     },
     {
         name: "Ameer Jamal",
         budget: 13,
         bgColor: "green",
-        id: 3
+        id: 3,
+        rentedMovies: new Set()
     },
     {
         name: "Muhammad Naarani",
         budget: 7,
         bgColor: "gold",
-        id: 4
+        id: 4,
+        rentedMovies: new Set()
     }
 ]
 
@@ -42,25 +46,72 @@ const CATALOG = [
     { id: 3, isRented: false, title: "The Sword in the Stone", year: 1963, img: "https://www.disneyinfo.nl/images/laserdiscs/229-1-AS-front.jpg", descrShort: "Arthur is a young boy who just wants to be a knight's squire. Alas, he is dubbed 'Wart' early on, and it was all downhill from there for a while. On a hunting trip he falls in on Merlin, literally. Merlin is a possibly-mentally-unstable-and-ethically-dubious Wizard that turns Arthur into a literate, at-one-point harassed squirrel. Watch to find out what the heck that means." },
     { id: 4, isRented: false, title: "Beauty and the Beast", year: 2016, img: "https://images-na.ssl-images-amazon.com/images/I/51ArFYSFGJL.jpg", descrShort: "Basically the same as the original, except now Hermi-- Emma Wattson plays Belle, fittingly so some would say, given how actively progressive she is regarding women's rights. Rumor has it that in the bonus scenes she whips out a wand and turns Gaston into a toad, but in order to watch those scenes you need to recite a certain incantation." }
 ]
+const MOVIE_COST = 3;
 
 function App() {
-    const [currentUser, setCurrentUser] = useState(null)
+    const [currentUserIndex, setCurrentUserIndex] = useState(null);
     const [users, setUsers] = useState(USERS);
-    const [catalog, setCatalog] = useState(CATALOG);
+    const [catalog, setCatalog] = useState([]);
+
+    function getCatalog() {
+        if(currentUserIndex === null) {
+            return [];
+        }
+
+        return CATALOG.map(movie => {
+            return {
+                ...movie, isRented: users[currentUserIndex].rentedMovies.has(movie.id)
+            }
+        })
+    }
+    
+    useEffect(() => {
+        if(currentUserIndex !== null) {
+            setCatalog(getCatalog());
+        }
+    }, [currentUserIndex])
 
     const selectUser = (userId) => {
-        setCurrentUser(users.find(user => user.id === userId));
+        const newCurrentUserIndex = users.findIndex(user => user.id === userId);
+        setCurrentUserIndex(newCurrentUserIndex);
     }
 
+    const toggleRentMovie = (movieId) => {
+        const newCatalog = [...catalog];
+        const updatedUser = users[currentUserIndex];
+        const newUsers = [...users];
+
+        const movieIndex = newCatalog.findIndex(movie => movie.id === movieId);
+        
+        if(!newCatalog[movieIndex].isRented && (updatedUser.budget - MOVIE_COST < 0)) {
+            alert("Insufficient funds!")
+            return;
+        }
+        else if(newCatalog[movieIndex].isRented) {
+            updatedUser.rentedMovies.add(movieId);
+            updatedUser.budget += MOVIE_COST;
+        }
+        else {
+            updatedUser.rentedMovies.delete(movieId);
+            updatedUser.budget -= MOVIE_COST;
+        }
+        
+        newCatalog[movieIndex].isRented = !newCatalog[movieIndex].isRented;
+        
+        newUsers[currentUserIndex] = updatedUser;
+        setCatalog(newCatalog);
+        setUsers(newUsers);
+    }
+    
     return (
         <BrowserRouter>
             <div className="app">
-                <Navbar user={currentUser}/>
+                <Navbar user={users[currentUserIndex]} />
 
                 <Routes>
                     <Route path="/" element={<Home users={users} selectUser={selectUser} />}/>
-                    <Route path="/catalog" element={<Catalog user={currentUser} catalog={catalog} />}/>
-                    <Route path="/movies/:movieId" element={<Movie catalog={catalog} />}/>
+                    <Route path="/catalog" element={<Catalog user={users[currentUserIndex]} catalog={catalog} toggleRentMovie={toggleRentMovie} />}/>
+                    <Route path="/movies/:movieId" element={<Movie catalog={catalog} toggleRentMovie={toggleRentMovie} />}/>
                 </Routes>
             </div>
         </BrowserRouter>

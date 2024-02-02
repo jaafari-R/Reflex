@@ -3,11 +3,10 @@ import "./Movie.css";
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import RentIcon from './RentIcon';
 
 
-export default function Movie({ catalog }) {
+export default function Movie({ catalog, toggleRentMovie }) {
     const { movieId } = useParams();
     const movie = catalog[movieId];
 
@@ -15,8 +14,8 @@ export default function Movie({ catalog }) {
         <div className='movie'>
             <h3>{movie.title} {movie.year}</h3>
             <div className="image">
-                <RentIcon />
-                <img src={movie.img}/>
+                <RentIcon movie={movie} toggleRentMovie={toggleRentMovie} />
+                <img src={movie.img} />
             </div>
             <p>{movie.descrShort}</p>
         </div>
