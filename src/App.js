@@ -88,11 +88,11 @@ function App() {
             return;
         }
         else if(newCatalog[movieIndex].isRented) {
-            updatedUser.rentedMovies.add(movieId);
+            updatedUser.rentedMovies.delete(movieId);
             updatedUser.budget += MOVIE_COST;
         }
         else {
-            updatedUser.rentedMovies.delete(movieId);
+            updatedUser.rentedMovies.add(movieId);
             updatedUser.budget -= MOVIE_COST;
         }
         
