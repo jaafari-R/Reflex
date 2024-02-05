@@ -3,9 +3,9 @@
     display: flex;
     background-color: #282828;
     display: flex;
-    padding-block: 5px;
-    box-shadow: 1px 1px #555;
-    padding-inline: 10px;
+    padding-block: 10px;
+    box-shadow: 1px 1px hsl(0, 0%, 33%);
+    padding-inline: 50px;
 }
 
 .links {
@@ -29,6 +29,7 @@
     margin-right: 5px;
     color: red;
     font-weight: bold;
+    text-align: end;
 }
 
 .userName {

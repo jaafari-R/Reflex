@@ -8,9 +8,9 @@ export default function RentIcon({ movie, toggleRentMovie }) {
   return (
     <div className="rentIcon" onClick={() => toggleRentMovie(movie.id)}>
         {movie.isRented ?
-          <RemoveCircleIcon />
+          <RemoveCircleIcon className="remove" fontSize="large"/>
           :
-          <ControlPointIcon />
+          <ControlPointIcon className="add" fontSize="large"/>
         }
     </div>
   )

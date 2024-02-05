@@ -12,7 +12,7 @@ export default function Movie({ catalog, toggleRentMovie }) {
 
     return (
         <div className='movie'>
-            <h3>{movie.title} {movie.year}</h3>
+            <h1>{movie.title} {movie.year}</h1>
             <div className="image">
                 <RentIcon movie={movie} toggleRentMovie={toggleRentMovie} />
                 <img src={movie.img} />

@@ -25,21 +25,29 @@ export default function Catalog({ user, catalog, toggleRentMovie }) {
         setState(e.target.value);
     }
 
+        const rentedMovies =  showMovies.filter(movie => user.rentedMovies.has(movie.id));
+
     return (
         user !== null ? 
-            <div>
+            <div className="rentMovies">
                 <div className="search">
                     <input onChange={handleChange(setSearch)} placeholder="Search Movie" />
                     <SearchIcon className="icon"/>
                 </div>
-                <h4>Rented:</h4>
-                <div className="catalog">
-                    {showMovies.filter(movie => user.rentedMovies.has(movie.id)).map(movie => 
-                        <MovieCard key={movie.id} movie={movie} toggleRentMovie={toggleRentMovie} />
-                    )}
-                </div>
                 
-                <h4>Catalog:</h4>
+                { rentedMovies.length > 0 &&
+                    <>
+                    <h2>Rented Movies</h2>
+                    <div className="catalog">
+                        {rentedMovies.map(movie => 
+                            <MovieCard key={movie.id} movie={movie} toggleRentMovie={toggleRentMovie} />
+                            )}
+                    </div>
+                    <hr />
+                    </>
+                }
+
+                <h2>Catalog</h2>
                 <div className="catalog">
                     {showMovies.map(movie => 
                         <MovieCard key={movie.id} movie={movie} toggleRentMovie={toggleRentMovie} />

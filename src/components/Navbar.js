@@ -1,9 +1,15 @@
 import "./Navbar.css";
 
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export default function Navbar({ user }) {
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    if(!user && location.pathname != "/") {
+        navigate("/");
+    }
 
     return (
         <div className="navbar">
@@ -14,7 +20,11 @@ export default function Navbar({ user }) {
             </div>
             <div className="userBudget">
                 {user &&
-                    <h2>Budget: <span className="budget">{user.budget}</span></h2>
+                    <h2>Budget: 
+                        <span className="budget" 
+                            style={user.budget < 3 ? { color: "red" } : {color: "rgb(26, 196, 26)"}}
+                        >${user.budget}</span>
+                    </h2>
                 }
             </div>
             <div className="links">

@@ -1,7 +1,16 @@
 .rentIcon {
     display: fixed;
     position: absolute;
-    right: 0;
+    right: 10px;
+    top: 10px;
     cursor: pointer;
     color: white;
+}
+
+.rentIcon > .remove {
+    color: rgb(255, 48, 48);
+}
+
+.rentIcon > .add {
+    color: rgb(255, 255, 255);
 }
