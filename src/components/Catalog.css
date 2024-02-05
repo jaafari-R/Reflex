@@ -5,3 +5,29 @@
     margin-top: 10px;
     margin-inline: 20px;
 }
+
+.search {
+    margin: auto;
+    width: fit-content;
+    position: relative;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.search > .icon {
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    color: #555;
+}
+
+.search > input {
+    width: 20vw;
+    padding: 3px;
+    padding-inline: 35px;
+    height: 40px;
+    border-radius: 5px;
+    border: solid black 1px;
+    background-color: white;
+    text-align: center;
+}

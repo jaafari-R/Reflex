@@ -2,6 +2,9 @@ import "./Catalog.css";
 
 import React, { useEffect, useState } from 'react'
 import { Navigate } from 'react-router-dom'
+
+import SearchIcon from '@mui/icons-material/Search';
+
 import MovieCard from './MovieCard'
 
 export default function Catalog({ user, catalog, toggleRentMovie }) {
@@ -25,8 +28,9 @@ export default function Catalog({ user, catalog, toggleRentMovie }) {
     return (
         user !== null ? 
             <div>
-                <div>
-                    <input onChange={handleChange(setSearch)} />
+                <div className="search">
+                    <input onChange={handleChange(setSearch)} placeholder="Search Movie" />
+                    <SearchIcon className="icon"/>
                 </div>
                 <h4>Rented:</h4>
                 <div className="catalog">

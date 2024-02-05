@@ -9,19 +9,21 @@ export default function Navbar({ user }) {
         <div className="navbar">
             <div className="userName">
                 {user &&
-                    <h5>Hello {user.name}</h5>
+                    <h2>Hello {user.name}</h2>
                 }
             </div>
             <div className="userBudget">
                 {user &&
-                    <h5>Budget: <span className="budget">{user.budget}</span></h5>
+                    <h2>Budget: <span className="budget">{user.budget}</span></h2>
                 }
             </div>
             <div className="links">
-                <Link to="/"><h4>Home</h4></Link>
-                <Link to="/catalog"><h4>Catalog</h4></Link>
+                <Link to="/"><h2>Home</h2></Link>
+                <Link to="/catalog"><h2>Catalog</h2></Link>
             </div>
-            <div className="logo">Reflex</div>
+            <div className="logo">
+                <h2>Reflex</h2>
+            </div>
         </div>
     )
 }

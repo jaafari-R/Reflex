@@ -9,8 +9,9 @@
 }
 
 .links {
+    flex: 0.49;
     display: flex;
-    flex: 0.55;
+    justify-content: left;
     gap: 30px;
 }
 
@@ -39,5 +40,5 @@
 }
 
 .userBudget {
-    flex: 0.2;
+    flex: 0.26;
 }
