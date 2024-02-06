@@ -2,6 +2,7 @@ import "./Navbar.css";
 
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { MOVIE_COST } from "../constants";
 
 export default function Navbar({ user }) {
     const location = useLocation();
@@ -22,7 +23,7 @@ export default function Navbar({ user }) {
                 {user &&
                     <h2>Budget: 
                         <span className="budget" 
-                            style={user.budget < 3 ? { color: "red" } : {color: "rgb(26, 196, 26)"}}
+                            style={user.budget < MOVIE_COST ? { color: "red" } : {color: "rgb(26, 196, 26)"}}
                         >${user.budget}</span>
                     </h2>
                 }

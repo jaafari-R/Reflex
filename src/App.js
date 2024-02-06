@@ -52,7 +52,6 @@ function App() {
     }
     
     useEffect(() => {
-        console.log(currentUserIndex, users)
         if(currentUserIndex !== null) {
             setCatalog(getCatalog());
             localStorage.currentUserIndex = currentUserIndex;

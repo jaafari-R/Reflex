@@ -25,7 +25,7 @@ export default function Catalog({ user, catalog, toggleRentMovie }) {
         setState(e.target.value);
     }
 
-        const rentedMovies =  showMovies.filter(movie => user.rentedMovies.has(movie.id));
+    const rentedMovies =  showMovies.filter(movie => user.rentedMovies.has(movie.id));
 
     return (
         user !== null ? 
